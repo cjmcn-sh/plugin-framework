@@ -165,9 +165,9 @@
         </plugins>
     </build>
 
-    <!--<scm>-->
-        <!--<connection>http</connection>-->
-    <!--</scm>-->
+    <scm>
+        <connection>scm:svn:https://github.com/pippo1980/plugin-framework</connection>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
