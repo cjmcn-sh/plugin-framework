@@ -2,7 +2,7 @@ package com.sirius.plugin.framework.jpa.plugin.jpa;
 
 import com.sirius.plugin.framework.AppSettings;
 import com.sirius.plugin.framework.engine.module.Plugin;
-import com.sirius.plugin.framework.engine.module.WebPluginInitedListener;
+import com.sirius.plugin.framework.engine.module.WebPluginInitListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +16,7 @@ import java.util.EnumSet;
  * Created by pippo on 14-3-21.
  */
 @WebListener
-public class SiriusOpenEntityManagerViewListener extends WebPluginInitedListener {
+public class SiriusOpenEntityManagerViewListener extends WebPluginInitListener {
 
     private static final Logger logger = LoggerFactory.getLogger(SiriusOpenEntityManagerViewListener.class);
 

@@ -15,7 +15,7 @@ import javax.servlet.ServletContextAttributeListener;
  * User: pippo
  * Date: 14-3-6-22:03
  */
-public abstract class WebPluginInitedListener implements ServletContextAttributeListener {
+public abstract class WebPluginInitListener implements ServletContextAttributeListener {
 
 	public static final String PLUGIN_INIT_EVENT = "ctu.plugin.init";
 	public static final String PLUGINS_INIT_EVENT = "ctu.plugins.init";

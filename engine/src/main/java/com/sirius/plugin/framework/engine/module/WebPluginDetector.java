@@ -50,14 +50,14 @@ public class WebPluginDetector extends Servlet3ContainerDetector {
 
 		PluginInitEvent event = new PluginInitEvent(plugin);
 		ApplicationContextLauncher.getApplicationContext().publishEvent(event);
-		ctx.setAttribute(WebPluginInitedListener.PLUGIN_INIT_EVENT + "." + plugin.getName(), event);
+		ctx.setAttribute(WebPluginInitListener.PLUGIN_INIT_EVENT + "." + plugin.getName(), event);
 	}
 
 	@Override
 	protected void afterInit(ServletContext ctx) throws ServletException {
 		PluginsInitEvent event = new PluginsInitEvent(ctx);
 		ApplicationContextLauncher.getApplicationContext().publishEvent(event);
-		ctx.setAttribute(WebPluginInitedListener.PLUGINS_INIT_EVENT, event);
+		ctx.setAttribute(WebPluginInitListener.PLUGINS_INIT_EVENT, event);
 	}
 
 }
