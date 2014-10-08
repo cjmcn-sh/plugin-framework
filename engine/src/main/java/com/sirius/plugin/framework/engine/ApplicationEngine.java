@@ -5,10 +5,10 @@
 package com.sirius.plugin.framework.engine;
 
 import com.sirius.plugin.framework.AppSettings;
-import com.sirius.spring.ApplicationContextLauncher;
 import com.sirius.plugin.framework.engine.event.PluginInitEvent;
 import com.sirius.plugin.framework.engine.module.Component;
 import com.sirius.plugin.framework.engine.module.Plugin;
+import com.sirius.spring.ApplicationContextLauncher;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -68,6 +68,20 @@ public class ApplicationEngine {
 			settings = "/" + settings;
 		}
 		return settings;
+	}
+
+	public static Plugin getPlugin(String pluginName) {
+		return PLUGINS.get(pluginName);
+	}
+
+	public static <T> T getPluginBean(String pluginName, Class<T> clazz) {
+		Plugin plugin = getPlugin(pluginName);
+
+		if (plugin == null) {
+			return null;
+		}
+
+		return plugin.getBean(clazz);
 	}
 
 	public void start() throws ApplicationEngineException {
@@ -130,20 +144,6 @@ public class ApplicationEngine {
 					}
 				}
 		);
-	}
-
-	public static Plugin getPlugin(String pluginName) {
-		return PLUGINS.get(pluginName);
-	}
-
-	public static <T> T getPluginBean(String pluginName, Class<T> clazz) {
-		Plugin plugin = getPlugin(pluginName);
-
-		if (plugin == null) {
-			return null;
-		}
-
-		return plugin.getBean(clazz);
 	}
 
 }
