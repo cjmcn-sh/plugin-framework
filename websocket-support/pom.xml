@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.sirius</groupId>
+        <artifactId>plugin-framework</artifactId>
+        <version>1.1-GA</version>
+    </parent>
+
+    <groupId>com.sirius.plugin-framework</groupId>
+    <artifactId>websocket-support</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-RELEASE</version>
+
+    <properties>
+        
+    </properties>
+
+    <dependencies>
+
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>myctu.repository.snapshot</id>
+            <url>http://218.1.73.6/nexus/content/repositories/snapshot</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>myctu.repository.release</id>
+            <url>http://218.1.73.6/nexus/content/repositories/release</url>
+        </repository>
+    </repositories>
+</project>

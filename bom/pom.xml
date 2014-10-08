@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.sirius</groupId>
+        <artifactId>plugin-framework</artifactId>
+        <version>1.1-GA</version>
+    </parent>
+
+    <groupId>com.sirius.plugin-framework</groupId>
+    <artifactId>bom</artifactId>
+    <packaging>jar</packaging>
+    <version>1.1-GA</version>
+
+    <properties>
+        <engine.version>1.0-RELEASE</engine.version>
+        <jpa-support.version>1.0-RELEASE</jpa-support.version>
+    </properties>
+
+    <dependencies>
+        <!-- modules -->
+        <dependency>
+            <groupId>com.sirius.plugin-framework</groupId>
+            <artifactId>engine</artifactId>
+            <version>${engine.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sirius.plugin-framework</groupId>
+            <artifactId>jpa-support</artifactId>
+            <version>${jpa-support.version}</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>myctu.repository.snapshot</id>
+            <url>http://218.1.73.6/nexus/content/repositories/snapshot</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>myctu.repository.release</id>
+            <url>http://218.1.73.6/nexus/content/repositories/release</url>
+        </repository>
+    </repositories>
+</project>
