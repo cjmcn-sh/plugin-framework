@@ -18,8 +18,8 @@
         <module>engine</module>
         <module>jpa-support</module>
         <module>mongo-support</module>
-        <module>sphinx-support</module>
-        <module>websocket-support</module>
+        <!--<module>sphinx-support</module>-->
+        <!--<module>websocket-support</module>-->
     </modules>
 
     <properties>
