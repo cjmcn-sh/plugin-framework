@@ -18,7 +18,9 @@
 
     <aop:aspectj-autoproxy proxy-target-class="false"/>
     <context:annotation-config/>
-    <context:property-placeholder location="classpath*:application.settings.properties"/>
+    <context:property-placeholder location="classpath*:application.settings.properties"
+                                  ignore-resource-not-found="true"
+                                  ignore-unresolvable="true"/>
 
     <mvc:annotation-driven>
         <!-- 会在默认的converters链最前面添加 -->

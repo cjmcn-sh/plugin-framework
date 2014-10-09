@@ -4,7 +4,7 @@
 
 package com.sirius.plugin.framework.jpa.domain.repository;
 
-import com.sirius.plugin.framework.jpa.domain.model.CTUEntity;
+import com.sirius.plugin.framework.jpa.domain.model.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -14,7 +14,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  * Date: 13-12-18-12:36
  */
 @NoRepositoryBean
-public interface BaseRepository<E extends CTUEntity> extends JpaRepository<E, String>, JpaSpecificationExecutor<E> {
+public interface BaseRepository<E extends BaseEntity> extends JpaRepository<E, String>, JpaSpecificationExecutor<E> {
 
     <T> T execute(JPAProcedure<T> executor);
 

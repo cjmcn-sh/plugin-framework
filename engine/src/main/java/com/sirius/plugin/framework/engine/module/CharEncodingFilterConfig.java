@@ -1,6 +1,6 @@
 package com.sirius.plugin.framework.engine.module;
 
-import com.sirius.plugin.framework.AppSettings;
+import com.sirius.plugin.framework.engine.AppSettings;
 import org.apache.commons.lang3.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

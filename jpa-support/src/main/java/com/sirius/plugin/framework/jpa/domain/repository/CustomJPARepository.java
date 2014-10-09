@@ -4,7 +4,7 @@
 
 package com.sirius.plugin.framework.jpa.domain.repository;
 
-import com.sirius.plugin.framework.jpa.domain.model.CTUEntity;
+import com.sirius.plugin.framework.jpa.domain.model.BaseEntity;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
  * User: pippo
  * Date: 13-12-19-15:45
  */
-public class CustomJPARepository<E extends CTUEntity> extends SimpleJpaRepository<E, String> implements BaseRepository<E> {
+public class CustomJPARepository<E extends BaseEntity> extends SimpleJpaRepository<E, String> implements BaseRepository<E> {
 
     public CustomJPARepository(JpaEntityInformation<E, ?> entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);

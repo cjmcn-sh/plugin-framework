@@ -4,7 +4,7 @@
 
 package com.sirius.plugin.framework.jpa.domain.repository;
 
-import com.sirius.plugin.framework.jpa.domain.model.CTUEntity;
+import com.sirius.plugin.framework.jpa.domain.model.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
 /**
  * User: pippo Date: 13-12-19-20:33
  */
-public class CustomJPARepositoryFactoryBean<R extends JpaRepository<E, String>, E extends CTUEntity> extends
+public class CustomJPARepositoryFactoryBean<R extends JpaRepository<E, String>, E extends BaseEntity> extends
         JpaRepositoryFactoryBean<R, E, String> {
 
     @Override
@@ -25,7 +25,7 @@ public class CustomJPARepositoryFactoryBean<R extends JpaRepository<E, String>, 
         return new MyRepositoryFactory<E>(entityManager);
     }
 
-    private static class MyRepositoryFactory<E extends CTUEntity> extends JpaRepositoryFactory {
+    private static class MyRepositoryFactory<E extends BaseEntity> extends JpaRepositoryFactory {
 
         private EntityManager entityManager;
 

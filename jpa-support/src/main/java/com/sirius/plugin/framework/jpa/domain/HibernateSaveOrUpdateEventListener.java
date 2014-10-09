@@ -9,8 +9,8 @@
  */
 package com.sirius.plugin.framework.jpa.domain;
 
+import com.sirius.plugin.framework.jpa.domain.model.BaseEntity;
 import com.sirius.utils.thread.ThreadContext;
-import com.sirius.plugin.framework.jpa.domain.model.CTUEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.hibernate.event.spi.SaveOrUpdateEventListener;
@@ -41,26 +41,26 @@ public class HibernateSaveOrUpdateEventListener implements SaveOrUpdateEventList
 
 	protected void createStamp(Object entity) {
 
-		if (!(entity instanceof CTUEntity)) {
+		if (!(entity instanceof BaseEntity)) {
 			return;
 		}
 
-		((CTUEntity) entity).setTimeCreated(System.currentTimeMillis());
+		((BaseEntity) entity).setTimeCreated(System.currentTimeMillis());
 
 		String auditor = ThreadContext.get(THREAD_AUDITOR_KEY);
-		((CTUEntity) entity).setUserCreated(auditor != null ? auditor : DEFAULT_AUDITOR);
+		((BaseEntity) entity).setUserCreated(auditor != null ? auditor : DEFAULT_AUDITOR);
 	}
 
 	protected void updateStamp(Object entity) {
 
-		if (!(entity instanceof CTUEntity)) {
+		if (!(entity instanceof BaseEntity)) {
 			return;
 		}
 
-		((CTUEntity) entity).setTimeModified(System.currentTimeMillis());
+		((BaseEntity) entity).setTimeModified(System.currentTimeMillis());
 
 		String auditor = ThreadContext.get(THREAD_AUDITOR_KEY);
-		((CTUEntity) entity).setUserModified(auditor != null ? auditor : DEFAULT_AUDITOR);
+		((BaseEntity) entity).setUserModified(auditor != null ? auditor : DEFAULT_AUDITOR);
 	}
 
 }

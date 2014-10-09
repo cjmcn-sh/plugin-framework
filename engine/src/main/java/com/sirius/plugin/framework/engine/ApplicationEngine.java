@@ -4,7 +4,6 @@
 
 package com.sirius.plugin.framework.engine;
 
-import com.sirius.plugin.framework.AppSettings;
 import com.sirius.plugin.framework.engine.event.PluginInitEvent;
 import com.sirius.plugin.framework.engine.module.Component;
 import com.sirius.plugin.framework.engine.module.Plugin;
@@ -36,7 +35,6 @@ public class ApplicationEngine {
 	private static final Logger logger = LoggerFactory.getLogger(ApplicationEngine.class);
 
 	public static final Set<Component> COMPONENTS = new LinkedHashSet<>();
-
 	public static final Map<String, Plugin> PLUGINS = new LinkedHashMap<>();
 
 	static {
@@ -62,7 +60,7 @@ public class ApplicationEngine {
 	protected static String getSettingsPath(String[] args) {
 		String settings = args != null && args.length > 1 && StringUtils.isNotBlank(args[1])
 				? args[1]
-				: "ctu.application.settings.properties";
+				: "application.settings.properties";
 
 		if (!settings.startsWith("/")) {
 			settings = "/" + settings;

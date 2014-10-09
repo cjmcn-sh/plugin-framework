@@ -1,6 +1,6 @@
 package com.sirius.plugin.framework.jpa.plugin.jpa;
 
-import com.sirius.plugin.framework.AppSettings;
+import com.sirius.plugin.framework.engine.AppSettings;
 import com.sirius.plugin.framework.engine.module.Plugin;
 import com.sirius.plugin.framework.engine.module.WebPluginInitListener;
 import org.slf4j.Logger;

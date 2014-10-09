@@ -14,26 +14,26 @@ import javax.persistence.MappedSuperclass;
  * Date: 13-12-6-12:50
  */
 @MappedSuperclass
-public class CTUEntity extends BasePersistable {
+public class BaseEntity extends BasePersistable {
 
     private static final long serialVersionUID = 545946784731302653L;
 
-    public CTUEntity() {
+    public BaseEntity() {
 
     }
 
-    public CTUEntity(String id) {
+    public BaseEntity(String id) {
         super(id);
     }
 
-    public <R extends BaseRepository<E>, E extends CTUEntity> R getRepository() {
+    public <R extends BaseRepository<E>, E extends BaseEntity> R getRepository() {
         String clazz = getClass().getSimpleName();
         return BeanLocator.getBean(
 				String.format("%s%sRepository", clazz.substring(0, 1).toLowerCase(), clazz.substring(1)));
     }
 
     @SuppressWarnings("unchecked")
-    public <E extends CTUEntity> E save() {
+    public <E extends BaseEntity> E save() {
         return (E) getRepository().save(this);
 
     }
