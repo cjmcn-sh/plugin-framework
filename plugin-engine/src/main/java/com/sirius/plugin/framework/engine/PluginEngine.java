@@ -36,6 +36,8 @@ public class PluginEngine implements Constants {
 	public static final Set<Component> COMPONENTS = new LinkedHashSet<>();
 	public static final Map<String, Plugin> PLUGINS = new LinkedHashMap<>();
 
+	static String _DEFAULT_SETTINGS = DEFAULT_SETTINGS;
+
 	static {
 		// Jersey uses java.util.logging - bridge to slf4
 		java.util.logging.Logger rootLogger = LogManager.getLogManager().getLogger("");
@@ -59,7 +61,7 @@ public class PluginEngine implements Constants {
 	protected static String getSettingsPath(String[] args) {
 		String settings = args != null && args.length > 1 && StringUtils.isNotBlank(args[1])
 				? args[1]
-				: DEFAULT_SETTINGS;
+				: _DEFAULT_SETTINGS;
 
 		if (!settings.startsWith("/")) {
 			settings = "/" + settings;
