@@ -89,6 +89,10 @@ public class ApplicationEngine {
 		ApplicationContextLauncher.start();
 	}
 
+	public void stop() {
+		ApplicationContextLauncher.stop();
+	}
+
 	protected SiriusApplicationContext createApplicationContext() {
 		SiriusApplicationContext context = null;
 		if (ApplicationEngine.class.getResource("/ctu.application.main.context.xml") == null) {
@@ -101,10 +105,6 @@ public class ApplicationEngine {
 
 		//context.addBeanFactoryPostProcessor(new ServiceBeanPostprocessor());
 		return context;
-	}
-
-	public void stop() {
-		ApplicationContextLauncher.stop();
 	}
 
 	protected void initComponents() throws ApplicationEngineException {
