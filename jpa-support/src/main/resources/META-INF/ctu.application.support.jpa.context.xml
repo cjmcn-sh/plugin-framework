@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright © 2010 www.myctu.cn. All rights reserved.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:repository="http://www.springframework.org/schema/data/repository"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+       default-autowire="no" default-lazy-init="true">
+
+    <!-- jpa ext -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="persistenceUnitName" value="ctu-application"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.ejb.naming_strategy"
+                       value="com.telecom.ctu.platform.framework.support.domain.HibernateImprovedNamingStrategy"/>
+            </map>
+        </property>
+        <property name="jpaProperties" value="classpath*:hibernate.properties"/>
+        <property name="packagesToScan" value="${ctu.orm.framework.orm.packagesToScan}"/>
+    </bean>
+
+    <!-- spring data jpa support -->
+    <bean id="casUserIdAuditorAware"
+          class="com.sirius.plugin.framework.jpa.domain.JPAAuditorAware"/>
+
+    <jpa:auditing auditor-aware-ref="casUserIdAuditorAware" modify-on-creation="true"/>
+
+    <jpa:repositories entity-manager-factory-ref="entityManagerFactory"
+                      base-package="com"
+                      named-queries-location="classpath*:META-INF/jpa/*.properties"
+                      factory-class="com.sirius.plugin.framework.jpa.domain.repository.CustomJPARepositoryFactoryBean">
+        <repository:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        <repository:include-filter type="assignable"
+                                   expression="com.sirius.plugin.framework.jpa.domain.repository.BaseRepository"/>
+    </jpa:repositories>
+
+    <!-- hibernate support -->
+    <bean id="sessionFactory"
+          class="com.sirius.plugin.framework.jpa.domain.repository.DelegateHibernatJPASessionFactory">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- transaction -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+    </bean>
+
+    <tx:annotation-driven mode="proxy" proxy-target-class="true" transaction-manager="transactionManager"
+                          order="100"/>
+</beans>

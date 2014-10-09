@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2010 www.myctu.cn. All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="no" default-lazy-init="true">
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <!-- jdbc setting -->
+        <property name="driverClass" value="${database.driver.class}"/>
+        <property name="jdbcUrl" value="${database.url}"/>
+        <property name="user" value="${database.user}"/>
+        <property name="password" value="${database.password}"/>
+        <!-- pool setting -->
+        <property name="initialPoolSize" value="${database.pool.init.size}"/>
+        <property name="minPoolSize" value="${database.pool.min.size}"/>
+        <property name="maxPoolSize" value="${database.pool.max.size}"/>
+        <property name="maxIdleTime" value="60"/>
+        <property name="idleConnectionTestPeriod" value="120"/>
+        <property name="acquireIncrement" value="2"/>
+        <property name="acquireRetryAttempts" value="3"/>
+        <property name="breakAfterAcquireFailure" value="true"/>
+        <property name="testConnectionOnCheckin" value="${database.pool.testConnectionOnCheckin}"/>
+        <property name="testConnectionOnCheckout" value="${database.pool.testConnectionOnCheckout}"/>
+        <property name="maxStatements" value="10"/>
+    </bean>
+
+    <!-- jdbc -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="namedParameterJdbcTemplate"
+          class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+</beans>

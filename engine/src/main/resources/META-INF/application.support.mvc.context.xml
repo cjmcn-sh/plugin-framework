@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2010 www.myctu.cn. All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="no" default-lazy-init="false">
+
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath*:application.settings.properties"/>
+
+    <mvc:annotation-driven>
+        <!-- 会在默认的converters链最前面添加 -->
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                <property name="prettyPrint" value="true"/>
+                <property name="objectMapper">
+                    <bean id="objectMapper"
+                          class="org.springframework.http.converter.json.JacksonObjectMapperFactoryBean">
+                        <property name="simpleDateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+                        <property name="featuresToDisable">
+                            <array>
+                                <!-- 反序列化 -->
+                                <util:constant
+                                        static-field="org.codehaus.jackson.map.DeserializationConfig$Feature.FAIL_ON_UNKNOWN_PROPERTIES"/>
+                                <!-- 序列化 -->
+                                <util:constant
+                                        static-field="org.codehaus.jackson.map.SerializationConfig$Feature.FAIL_ON_EMPTY_BEANS"/>
+                                <util:constant
+                                        static-field="org.codehaus.jackson.map.SerializationConfig$Feature.WRITE_NULL_MAP_VALUES"/>
+                                <util:constant
+                                        static-field="org.codehaus.jackson.map.SerializationConfig$Feature.WRITE_EMPTY_JSON_ARRAYS"/>
+                            </array>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="freeMarkerViewResolverTemplate"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
+          abstract="true">
+        <property name="contentType" value="text/html;charset=utf-8"/>
+        <!-- 模板需要被cache提高渲染效率 -->
+        <property name="cache" value="true"/>
+        <property name="cacheUnresolved" value="false"/>
+        <!-- request中的属性可以用${rc.xxx}的方式获取到 -->
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="requestContextAttribute" value="rc"/>
+        <!-- 模板文件的后缀 -->
+        <property name="suffix" value=".ftl"/>
+        <!-- 相对与[classpath:META-INF/]的相对路径 -->
+        <!--<property name="prefix" value="player/course/pages/"/>-->
+    </bean>
+
+</beans>

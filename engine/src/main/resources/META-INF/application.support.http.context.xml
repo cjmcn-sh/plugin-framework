@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2010 www.myctu.cn. All rights reserved.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="no" default-lazy-init="false">
+
+    <bean id="framework.httpServer" class="com.sirius.utils.http.HttpExporterServer"
+          lazy-init="false">
+        <property name="use_session" value="${server.http.session.enable}"/>
+        <property name="host" value="${server.http.host}"/>
+        <property name="port" value="${server.http.port}"/>
+        <property name="webRoot" value="${server.http.root}"/>
+        <property name="minThreads" value="${server.http.thread.min}"/>
+        <property name="maxThreads" value="${server.http.thread.max}"/>
+        <property name="contextRoot" value="${server.http.context.root}"/>
+    </bean>
+
+    <bean id="framework.freeMarkerConfigurer"
+          class="com.sirius.plugin.framework.engine.freemarker.ExtFreeMarkerConfigurer" lazy-init="false">
+        <property name="configLocation" value="classpath:META-INF/freemarker.properties"/>
+        <property name="preTemplateLoaders">
+            <array>
+                <!-- 绝对文件路径,主要用于开发环境 -->
+                <bean class="freemarker.cache.FileTemplateLoader">
+                    <constructor-arg index="0" name="baseDir" value="${server.http.context.root}"/>
+                    <constructor-arg index="1" name="allowLinking" value="true"/>
+                </bean>
+                <!-- 通过spring的resourceLoader来在classpath下查找模板 -->
+                <bean class="org.springframework.ui.freemarker.SpringTemplateLoader">
+                    <constructor-arg index="0" name="resourceLoader">
+                        <bean class="org.springframework.core.io.support.PathMatchingResourcePatternResolver"/>
+                    </constructor-arg>
+                    <constructor-arg index="1" name="templateLoaderPath" value="classpath:META-INF/"/>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+</beans>

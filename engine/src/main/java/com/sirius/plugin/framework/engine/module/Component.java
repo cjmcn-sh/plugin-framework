@@ -16,7 +16,7 @@ public abstract class Component implements Module {
 		this.applicationContext = applicationContext;
 	}
 
-	private SiriusApplicationContext applicationContext;
+	protected SiriusApplicationContext applicationContext;
 
 	@Override
 	public Type getType() {

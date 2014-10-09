@@ -16,11 +16,7 @@
     <context:annotation-config/>
     <context:property-placeholder location="classpath*:application.settings.properties"/>
 
-    <import resource="classpath*:META-INF/ctu.application.module.cache.context.xml"/>
-    <import resource="classpath*:META-INF/ctu.application.support.http.context.xml"/>
-    <import resource="classpath*:META-INF/ctu.application.support.jdbc.context.xml"/>
-    <import resource="classpath*:META-INF/ctu.application.support.jpa.context.xml"/>
-    <import resource="classpath*:META-INF/ctu.application.support.ehcache.context.xml"/>
-    <import resource="classpath*:META-INF/ctu.application.support.redis.context.xml"/>
+    <import resource="classpath*:META-INF/application.support.http.context.xml"/>
+    <import resource="classpath*:META-INF/application.support.ehcache.context.xml"/>
 
 </beans>

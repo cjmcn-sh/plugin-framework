@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @ContextConfiguration(locations = {
         "classpath*:META-INF/ctu.application.main.context.xml",
-        "classpath*:META-INF/ctu.application.test.context.xml"})
+		"classpath*:META-INF/application.test.context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ApplicationEngineBaseTest extends ApplicationContextLauncher {

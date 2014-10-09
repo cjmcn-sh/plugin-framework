@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
  */
 public class ExtFreeMarkerConfigurer extends FreeMarkerConfigurer {
 
-    private TaglibFactory taglibFactory;
+    protected TaglibFactory taglibFactory;
 
 
     @Override
