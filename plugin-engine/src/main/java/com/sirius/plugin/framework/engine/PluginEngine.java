@@ -36,7 +36,7 @@ public class PluginEngine implements Constants {
 	public static final Set<Component> COMPONENTS = new LinkedHashSet<>();
 	public static final Map<String, Plugin> PLUGINS = new LinkedHashMap<>();
 
-	static String _DEFAULT_SETTINGS = DEFAULT_SETTINGS;
+	protected static String _DEFAULT_SETTINGS = DEFAULT_SETTINGS;
 
 	static {
 		// Jersey uses java.util.logging - bridge to slf4
