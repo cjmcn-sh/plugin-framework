@@ -17,9 +17,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author pippo
@@ -27,58 +27,61 @@ import java.util.Set;
  */
 public class Servlet3JettyInbound extends AbstractJettyInbound {
 
-    private static Logger logger = LoggerFactory.getLogger(Servlet3JettyInbound.class);
+	private static Logger logger = LoggerFactory.getLogger(Servlet3JettyInbound.class);
 
-    protected void createServer() throws Exception {
-        super.createServer();
-         /*添加servlet3.0支持*/
-        Configuration.ClassList
-                .setServerDefault(server)
-                .add(0, AnnotationConfiguration.class.getName());
-    }
+	protected void createServer() throws Exception {
+		super.createServer();
+		 /*添加servlet3.0支持*/
+		Configuration.ClassList
+				.setServerDefault(server)
+				.add(0, AnnotationConfiguration.class.getName());
+	}
 
-    protected WebAppContext createWebAppContext() {
-        WebAppContext context = super.createWebAppContext();
+	protected WebAppContext createWebAppContext() {
+		WebAppContext context = super.createWebAppContext();
 
-        Set<Resource> containerResources = new HashSet<Resource>();
-        Set<Resource> webInfJarResources = new HashSet<Resource>();
+		List<Resource> classesResources = new ArrayList<>();
+		List<Resource> webInfJarResources = new ArrayList<Resource>();
 
-        try {
-            containerResources.add(Resource.newResource(Servlet3JettyInbound.class.getResource("/")));
+		try {
+			classesResources.add(Resource.newResource(Servlet3JettyInbound.class.getResource("/")));
 
             /*如果运行在嵌入式环境,依赖的lib会在webapp的classloader之前加载,那么不会作为当前webapp的资源被扫描*/
-            /*所以此处主动扫描,并加入到当前webapp的WEB-INF/lib下*/
-            Enumeration<URL> urls = ClassLoader.getSystemResources("META-INF/web-fragment.xml");
-            while (urls.hasMoreElements()) {
-                URL url = urls.nextElement();
-                Resource resource = Resource.newResource(
-                        url.getFile().replace("/META-INF/web-fragment.xml", "").replace("!", ""));
+			/*所以此处主动扫描,并加入到当前webapp的WEB-INF/lib下*/
+			Enumeration<URL> urls = ClassLoader.getSystemResources("META-INF/web-fragment.xml");
+			while (urls.hasMoreElements()) {
+				URL url = urls.nextElement();
+				Resource resource = Resource.newResource(
+						url.getFile().replace("/META-INF/web-fragment.xml", "").replace("!", ""));
 
-                if (resource.isDirectory()) {
-                    containerResources.add(resource);
-                } else {
-                    webInfJarResources.add(resource);
-                }
-            }
+				if (resource.isDirectory()) {
+					classesResources.add(resource);
+				} else {
+					webInfJarResources.add(resource);
+				}
+			}
 
-            for (Resource resource : containerResources) {
-                context.getMetaData().addContainerResource(resource);
-                logger.debug("add resource:[{}] as container resource", resource);
-            }
+			//            for (Resource resource : containerResources) {
+			//                context.getMetaData().addContainerResource(resource);
+			//                logger.debug("add resource:[{}] as container resource", resource);
+			//            }
 
-            for (Resource resource : webInfJarResources) {
-                context.getMetaData().addWebInfJar(resource);
-                logger.debug("add resource:[{}] as web info jar", resource);
-            }
+			context.getMetaData().setWebInfClassesDirs(classesResources);
+			logger.debug("set resource:[{}] as classes resource", classesResources);
 
-        } catch (IOException e) {
-            logger.warn("assemble servlet3 resource due to error", e);
-        }   finally {
-            containerResources.clear();
-            webInfJarResources.clear();
-        }
+			for (Resource resource : webInfJarResources) {
+				context.getMetaData().addWebInfJar(resource);
+				logger.debug("add resource:[{}] as web info jar", resource);
+			}
 
-        return context;
-    }
+		} catch (IOException e) {
+			logger.warn("assemble servlet3 resource due to error", e);
+		} finally {
+			classesResources.clear();
+			webInfJarResources.clear();
+		}
+
+		return context;
+	}
 
 }

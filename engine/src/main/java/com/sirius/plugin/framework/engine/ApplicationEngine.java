@@ -33,9 +33,10 @@ import java.util.logging.LogManager;
 public class ApplicationEngine {
 
 	private static final Logger logger = LoggerFactory.getLogger(ApplicationEngine.class);
-
 	public static final Set<Component> COMPONENTS = new LinkedHashSet<>();
 	public static final Map<String, Plugin> PLUGINS = new LinkedHashMap<>();
+
+	protected static String DEFAULT_SETTINGS = "application.settings.properties";
 
 	static {
 		// Jersey uses java.util.logging - bridge to slf4
@@ -60,7 +61,7 @@ public class ApplicationEngine {
 	protected static String getSettingsPath(String[] args) {
 		String settings = args != null && args.length > 1 && StringUtils.isNotBlank(args[1])
 				? args[1]
-				: "application.settings.properties";
+				: DEFAULT_SETTINGS;
 
 		if (!settings.startsWith("/")) {
 			settings = "/" + settings;
