@@ -27,8 +27,8 @@
         <project.jdk.version>1.7</project.jdk.version>
         <project.source.encoding>UTF-8</project.source.encoding>
         <!-- logger -->
-        <slf4j.version>1.7.5</slf4j.version>
-        <lockback.version>1.0.13</lockback.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <logback.version>1.1.2</logback.version>
         <!-- unit test -->
         <junit.version>4.11</junit.version>
         <!-- common utils -->
@@ -46,8 +46,8 @@
         <aspectj.version>1.7.4</aspectj.version>
         <cglib-nodep.version>2.2.2</cglib-nodep.version>
         <spring.version>4.0.0.RELEASE</spring.version>
-        <spring.data.jpa.verson>1.4.2.RELEASE</spring.data.jpa.verson>
-        <spring.data.mongo.version>1.5.1.RELEASE</spring.data.mongo.version>
+        <spring.data.jpa.verson>1.7.0.RELEASE</spring.data.jpa.verson>
+        <spring.data.mongo.version>1.6.0.RELEASE</spring.data.mongo.version>
         <!-- web server -->
         <jetty.version>9.2.1.v20140609</jetty.version>
         <!-- templete engine -->
@@ -200,7 +200,7 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>${lockback.version}</version>
+                <version>${logback.version}</version>
             </dependency>
             <!-- commons dependency -->
             <dependency>
