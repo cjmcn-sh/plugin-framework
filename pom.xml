@@ -43,7 +43,7 @@
         <!-- json -->
         <jackson.version>1.9.13</jackson.version>
         <!-- spring -->
-        <aspectj.version>1.7.4</aspectj.version>
+        <aspectj.version>1.8.2</aspectj.version>
         <cglib-nodep.version>2.2.2</cglib-nodep.version>
         <spring.version>4.0.0.RELEASE</spring.version>
         <spring.data.jpa.verson>1.7.0.RELEASE</spring.data.jpa.verson>
