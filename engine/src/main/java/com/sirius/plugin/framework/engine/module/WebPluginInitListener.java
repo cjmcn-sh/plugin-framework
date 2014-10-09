@@ -17,8 +17,8 @@ import javax.servlet.ServletContextAttributeListener;
  */
 public abstract class WebPluginInitListener implements ServletContextAttributeListener {
 
-	public static final String PLUGIN_INIT_EVENT = "ctu.plugin.init";
-	public static final String PLUGINS_INIT_EVENT = "ctu.plugins.init";
+	public static final String PLUGIN_INIT_EVENT = "sirius.plugin.init";
+	public static final String PLUGINS_INIT_EVENT = "sirius.plugins.init";
 
 	@Override
 	public void attributeAdded(ServletContextAttributeEvent event) {
