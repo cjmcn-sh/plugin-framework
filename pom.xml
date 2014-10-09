@@ -15,7 +15,7 @@
 
     <modules>
         <module>bom</module>
-        <module>engine</module>
+        <module>plugin-engine</module>
         <module>jpa-support</module>
         <module>mongo-support</module>
         <!--<module>sphinx-support</module>-->

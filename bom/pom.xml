@@ -24,7 +24,7 @@
         <!-- modules -->
         <dependency>
             <groupId>com.sirius.plugin-framework</groupId>
-            <artifactId>engine</artifactId>
+            <artifactId>plugin-engine</artifactId>
             <version>${engine.version}</version>
         </dependency>
         <dependency>
