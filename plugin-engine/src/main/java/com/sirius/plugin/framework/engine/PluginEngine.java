@@ -96,12 +96,12 @@ public class PluginEngine implements Constants {
 
 	protected SiriusApplicationContext createApplicationContext() {
 		SiriusApplicationContext context = null;
-		if (PluginEngine.class.getResource("/ctu.application.main.context.xml") == null) {
+		if (PluginEngine.class.getResource("/application.main.context.xml") == null) {
 			logger.info(
-					"can not find context:[/ctu.application.main.context.xml], use:[/META-INF/ctu.application.main.context.xml]");
-			context = new SiriusApplicationContext("/META-INF/ctu.application.main.context.xml");
+					"can not find context:[/application.main.context.xml], use:[/META-INF/application.main.context.xml]");
+			context = new SiriusApplicationContext("/META-INF/application.main.context.xml");
 		} else {
-			context = new SiriusApplicationContext("/ctu.application.main.context.xml");
+			context = new SiriusApplicationContext("/application.main.context.xml");
 		}
 
 		//context.addBeanFactoryPostProcessor(new ServiceBeanPostprocessor());
