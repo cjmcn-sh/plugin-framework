@@ -9,6 +9,7 @@
  */
 package com.sirius.plugin.framework.jpa.domain;
 
+import com.sirius.plugin.framework.engine.Constants;
 import com.sirius.plugin.framework.jpa.domain.model.BaseEntity;
 import com.sirius.utils.thread.ThreadContext;
 import org.hibernate.HibernateException;
@@ -21,15 +22,11 @@ import org.slf4j.LoggerFactory;
  * @author pippo
  * @since 2013-7-8
  */
-public class HibernateSaveOrUpdateEventListener implements SaveOrUpdateEventListener {
+public class HibernateSaveOrUpdateEventListener implements SaveOrUpdateEventListener, Constants {
 
 	private static final long serialVersionUID = -8268719061764049975L;
 
 	private static final Logger logger = LoggerFactory.getLogger(HibernateSaveOrUpdateEventListener.class);
-
-	public static final String THREAD_AUDITOR_KEY = "sirius.auditor";
-
-	public static final String DEFAULT_AUDITOR = "anonymous";
 
 	@Override
 	public void onSaveOrUpdate(SaveOrUpdateEvent event) throws HibernateException {

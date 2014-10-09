@@ -9,17 +9,18 @@
  */
 package com.sirius.plugin.framework.jpa.domain;
 
-import java.util.Map;
-
+import com.sirius.plugin.framework.jpa.domain.model.BaseEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.event.spi.PersistEvent;
 import org.hibernate.event.spi.PersistEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 /**
- * @since 2013-7-8
  * @author pippo
+ * @since 2013-7-8
  */
 public class HibernatePersistEventListener extends HibernateSaveOrUpdateEventListener implements PersistEventListener {
 
@@ -31,7 +32,15 @@ public class HibernatePersistEventListener extends HibernateSaveOrUpdateEventLis
 	public void onPersist(PersistEvent event) throws HibernateException {
 		logger.debug("begin save or update entity:[{}]", event.getObject());
 		Object entity = event.getObject();
-		createStamp(entity);
+
+		if (!(entity instanceof BaseEntity)) {
+			return;
+		}
+
+		if (((BaseEntity) entity).isNew()) {
+			createStamp(entity);
+		}
+
 		updateStamp(entity);
 	}
 

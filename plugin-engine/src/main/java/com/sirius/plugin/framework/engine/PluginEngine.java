@@ -30,13 +30,11 @@ import java.util.logging.LogManager;
  * User: pippo
  * Date: 13-12-12-13:06
  */
-public class PluginEngine {
+public class PluginEngine implements Constants {
 
 	private static final Logger logger = LoggerFactory.getLogger(PluginEngine.class);
 	public static final Set<Component> COMPONENTS = new LinkedHashSet<>();
 	public static final Map<String, Plugin> PLUGINS = new LinkedHashMap<>();
-
-	protected static String DEFAULT_SETTINGS = "application.settings.properties";
 
 	static {
 		// Jersey uses java.util.logging - bridge to slf4
