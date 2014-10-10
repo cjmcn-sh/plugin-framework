@@ -14,7 +14,7 @@
         <property name="cacheManager">
             <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
                 <property name="shared" value="true"/>
-                <property name="configLocation" value="classpath*:META-INF/ehcache.xml"/>
+                <!--<property name="configLocation" value="classpath*:META-INF/ehcache.xml"/>-->
             </bean>
         </property>
     </bean>

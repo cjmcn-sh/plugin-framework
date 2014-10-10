@@ -28,7 +28,7 @@
             </map>
         </property>
         <property name="jpaProperties" value="classpath*:hibernate.properties"/>
-        <property name="packagesToScan" value="${ctu.orm.framework.orm.packagesToScan}"/>
+        <property name="packagesToScan" value="${orm.framework.packagesToScan}"/>
     </bean>
 
     <!-- spring data jpa support -->
@@ -38,7 +38,7 @@
     <jpa:auditing auditor-aware-ref="casUserIdAuditorAware" modify-on-creation="true"/>
 
     <jpa:repositories entity-manager-factory-ref="entityManagerFactory"
-                      base-package="com"
+                      base-package="${orm.framework.repository.basePackage}"
                       named-queries-location="classpath*:META-INF/jpa/*.properties"
                       factory-class="com.sirius.plugin.framework.jpa.domain.repository.CustomJPARepositoryFactoryBean">
         <repository:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>

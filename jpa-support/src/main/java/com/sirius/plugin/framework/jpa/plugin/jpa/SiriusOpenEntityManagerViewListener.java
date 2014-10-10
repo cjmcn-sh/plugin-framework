@@ -20,7 +20,7 @@ public class SiriusOpenEntityManagerViewListener extends WebPluginInitListener {
 
     private static final Logger logger = LoggerFactory.getLogger(SiriusOpenEntityManagerViewListener.class);
 
-    private static final String orm_type = AppSettings.getInstance().get("ctu.orm.framework.type");
+    private static final String orm_type = AppSettings.getInstance().get("orm.framework.type");
 
     @Override
     protected void onPluginInit(ServletContext context, Plugin plugin) {
