@@ -47,6 +47,18 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <bean class="com.sirius.spring.PluginControllerExceptionResolver">
+        <property name="view">
+            <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerView">
+                <property name="configuration">
+                    <bean factory-bean="framework.freeMarkerConfigurer" factory-method="getConfiguration"/>
+                </property>
+                <property name="contentType" value="text/html"/>
+                <property name="url" value="error.ftl"/>
+            </bean>
+        </property>
+    </bean>
+
     <bean id="freeMarkerViewResolverTemplate"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
           abstract="true">
