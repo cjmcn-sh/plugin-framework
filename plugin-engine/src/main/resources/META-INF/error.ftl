@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>您在访问地址:[${uri}]是出错了</h1>
+    <h1>您在访问地址:[${uri}]时出错了</h1>
 
     <h2>请求参数:</h2>
     <pre>
