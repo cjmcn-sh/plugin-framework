@@ -60,6 +60,7 @@
                       transaction-manager-ref="transactionManager"
                       named-queries-location="classpath*:META-INF/jpa/*.properties"
                       factory-class="com.sirius.plugin.framework.jpa.domain.repository.CustomJPARepositoryFactoryBean">
+        <repository:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
         <repository:include-filter type="assignable"
                                    expression="com.sirius.plugin.framework.jpa.domain.repository.BaseRepository"/>
     </jpa:repositories>
