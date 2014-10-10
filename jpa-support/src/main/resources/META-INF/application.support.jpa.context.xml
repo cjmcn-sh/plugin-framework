@@ -6,11 +6,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xmlns:repository="http://www.springframework.org/schema/data/repository"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
        default-autowire="no" default-lazy-init="true">
 
@@ -56,12 +54,14 @@
 
     <jpa:auditing auditor-aware-ref="casUserIdAuditorAware" modify-on-creation="true"/>
 
-    <jpa:repositories entity-manager-factory-ref="entityManagerFactory"
-                      base-package="${orm.framework.repository.basePackage}"
+    <!--
+    <jpa:repositories base-package="com.sirius"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"
                       named-queries-location="classpath*:META-INF/jpa/*.properties"
                       factory-class="com.sirius.plugin.framework.jpa.domain.repository.CustomJPARepositoryFactoryBean">
-        <repository:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
         <repository:include-filter type="assignable"
                                    expression="com.sirius.plugin.framework.jpa.domain.repository.BaseRepository"/>
     </jpa:repositories>
+    -->
 </beans>
