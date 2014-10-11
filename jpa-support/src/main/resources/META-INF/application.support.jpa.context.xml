@@ -26,8 +26,12 @@
     </bean>
 
     <!-- hibernate support -->
-    <bean id="sessionFactory"
-          class="com.sirius.plugin.framework.jpa.domain.repository.DelegateHibernatJPASessionFactory">
+    <!--<bean id="sessionFactory"-->
+          <!--class="com.sirius.plugin.framework.jpa.domain.repository.DelegateHibernatJPASessionFactory">-->
+        <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
+    <!--</bean>-->
+
+    <bean id="sessionFactory" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
