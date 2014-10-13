@@ -45,7 +45,9 @@
         </property>
     </bean>
 
-    <tx:annotation-driven mode="proxy" proxy-target-class="true" transaction-manager="transactionManager"
+    <tx:annotation-driven mode="proxy"
+                          proxy-target-class="true"
+                          transaction-manager="transactionManager"
                           order="100"/>
 
     <!-- spring data jpa support -->

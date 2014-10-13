@@ -23,135 +23,134 @@ import java.util.UUID;
 @MappedSuperclass
 public class BasePersistable implements Persistable<String> {
 
-    private static final long serialVersionUID = -715456645278100196L;
+	private static final long serialVersionUID = -715456645278100196L;
 
-    public BasePersistable() {
-        this.id = UUID.randomUUID().toString();
-    }
+	public BasePersistable() {
+		this.id = UUID.randomUUID().toString();
+	}
 
-    public BasePersistable(String id) {
-        this.id = id;
-    }
+	public BasePersistable(String id) {
+		this.id = id;
+	}
 
-    @Override
-    public boolean isNew() {
-        return getId() != null;
-    }
+	@Override
+	public boolean isNew() {
+		return getId() != null;
+	}
 
-    public Date getDateCreated() {
-        return timeCreated != null ? new Date(timeCreated) : null;
-    }
+	public Date getDateCreated() {
+		return timeCreated != null ? new Date(timeCreated) : null;
+	}
 
-    public Date getDateModified() {
-        return timeModified != null ? new Date(timeModified) : null;
-    }
+	public Date getDateModified() {
+		return timeModified != null ? new Date(timeModified) : null;
+	}
 
-    @Id
-    @Column(length = 36)
-    protected String id;
+	@Id
+	@Column(length = 36)
+	protected String id;
 
-    @CreatedBy
-    @Column(nullable = false, updatable = false)
-    protected String userCreated;
+	@CreatedBy
+	@Column(nullable = false, updatable = false)
+	protected String userCreated;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    protected Long timeCreated;
+	@CreatedDate
+	@Column(nullable = false, updatable = false)
+	protected Long timeCreated;
 
-    @LastModifiedBy
-    @Column(nullable = false)
-    protected String userModified;
+	@LastModifiedBy
+	@Column(nullable = false)
+	protected String userModified;
 
-    @LastModifiedDate
-    @Column(nullable = false)
-    protected Long timeModified;
+	@LastModifiedDate
+	@Column(nullable = false)
+	protected Long timeModified;
 
-    @Basic
-    protected Boolean deleted;
+	@Basic
+	protected Boolean deleted = false;
 
-    @Override
-    public String getId() {
-        return this.id;
-    }
+	@Override
+	public String getId() {
+		return this.id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getUserCreated() {
-        return userCreated;
-    }
+	public String getUserCreated() {
+		return userCreated;
+	}
 
-    public void setUserCreated(String userCreated) {
-        this.userCreated = userCreated;
-    }
+	public void setUserCreated(String userCreated) {
+		this.userCreated = userCreated;
+	}
 
-    public Long getTimeCreated() {
-        return timeCreated;
-    }
+	public Long getTimeCreated() {
+		return timeCreated;
+	}
 
-    public void setTimeCreated(Long timeCreated) {
-        this.timeCreated = timeCreated;
-    }
+	public void setTimeCreated(Long timeCreated) {
+		this.timeCreated = timeCreated;
+	}
 
-    public String getUserModified() {
-        return userModified;
-    }
+	public String getUserModified() {
+		return userModified;
+	}
 
-    public void setUserModified(String userModified) {
-        this.userModified = userModified;
-    }
+	public void setUserModified(String userModified) {
+		this.userModified = userModified;
+	}
 
-    public Long getTimeModified() {
-        return timeModified;
-    }
+	public Long getTimeModified() {
+		return timeModified;
+	}
 
-    public void setTimeModified(Long timeModified) {
-        this.timeModified = timeModified;
-    }
+	public void setTimeModified(Long timeModified) {
+		this.timeModified = timeModified;
+	}
 
-    public Boolean getDeleted() {
-        return deleted;
-    }
+	public Boolean getDeleted() {
+		return deleted;
+	}
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof BasePersistable)) {
+			return false;
+		}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof BasePersistable)) {
-            return false;
-        }
+		BasePersistable that = (BasePersistable) o;
 
-        BasePersistable that = (BasePersistable) o;
+		if (!id.equals(that.id)) {
+			return false;
+		}
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
+		return true;
+	}
 
-        return true;
-    }
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "%s [id=%s, userCreated=%s, timeCreated=%s, userModified=%s, timeModified=%s, deleted=%s]",
-                getClass(),
-                id,
-                userCreated,
-                timeCreated,
-                userModified,
-                timeModified,
-                deleted);
-    }
+	@Override
+	public String toString() {
+		return String.format(
+				"%s [id=%s, userCreated=%s, timeCreated=%s, userModified=%s, timeModified=%s, deleted=%s]",
+				getClass(),
+				id,
+				userCreated,
+				timeCreated,
+				userModified,
+				timeModified,
+				deleted);
+	}
 }
