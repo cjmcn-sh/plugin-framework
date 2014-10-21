@@ -184,7 +184,7 @@ public abstract class EmbedJettyServer {
 		}
 
 		WebAppContext context = new WebAppContext(webApp.getAbsolutePath(), contextPath);
-		context.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
+		context.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "true");
 		context.setWelcomeFiles(welcomeFiles);
 
 		if (!useSession) {

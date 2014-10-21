@@ -22,10 +22,10 @@
         <property name="preTemplateLoaders">
             <array>
                 <!-- 绝对文件路径,主要用于开发环境 -->
-                <bean class="freemarker.cache.FileTemplateLoader">
-                    <constructor-arg index="0" name="baseDir" value="${server.http.webapp.default.dir}"/>
-                    <constructor-arg index="1" name="allowLinking" value="true"/>
-                </bean>
+                <!--<bean class="freemarker.cache.FileTemplateLoader">-->
+                    <!--<constructor-arg index="0" name="baseDir" value="${server.http.webapp.default.dir}"/>-->
+                    <!--<constructor-arg index="1" name="allowLinking" value="true"/>-->
+                <!--</bean>-->
                 <!-- 通过spring的resourceLoader来在classpath下查找模板 -->
                 <bean class="org.springframework.ui.freemarker.SpringTemplateLoader">
                     <constructor-arg index="0" name="resourceLoader">
