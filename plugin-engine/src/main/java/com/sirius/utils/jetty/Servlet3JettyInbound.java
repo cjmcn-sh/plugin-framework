@@ -25,7 +25,7 @@ import java.util.List;
  * @author pippo
  * @since 2011-11-15
  */
-public class Servlet3JettyInbound extends AbstractJettyInbound {
+public class Servlet3JettyInbound extends EmbedJettyServer {
 
 	private static Logger logger = LoggerFactory.getLogger(Servlet3JettyInbound.class);
 
@@ -37,8 +37,12 @@ public class Servlet3JettyInbound extends AbstractJettyInbound {
 				.add(0, AnnotationConfiguration.class.getName());
 	}
 
-	protected WebAppContext createWebAppContext() {
-		WebAppContext context = super.createWebAppContext();
+	@Override
+	protected WebAppContext createDefaultWebAppContext() {
+		defaultWebAppContext = super.createDefaultWebAppContext();
+		if (defaultWebAppContext == null) {
+			return null;
+		}
 
 		List<Resource> classesResources = new ArrayList<>();
 		List<Resource> webInfJarResources = new ArrayList<Resource>();
@@ -66,11 +70,11 @@ public class Servlet3JettyInbound extends AbstractJettyInbound {
 			//                logger.debug("add resource:[{}] as container resource", resource);
 			//            }
 
-			context.getMetaData().setWebInfClassesDirs(classesResources);
+			defaultWebAppContext.getMetaData().setWebInfClassesDirs(classesResources);
 			logger.debug("set resource:[{}] as classes resource", classesResources);
 
 			for (Resource resource : webInfJarResources) {
-				context.getMetaData().addWebInfJar(resource);
+				defaultWebAppContext.getMetaData().addWebInfJar(resource);
 				logger.debug("add resource:[{}] as web info jar", resource);
 			}
 
@@ -81,7 +85,7 @@ public class Servlet3JettyInbound extends AbstractJettyInbound {
 			webInfJarResources.clear();
 		}
 
-		return context;
+		return defaultWebAppContext;
 	}
 
 }

@@ -2,7 +2,6 @@ package com.sirius.utils.http;
 
 import com.sirius.utils.jetty.Servlet3JettyInbound;
 import com.sirius.utils.servlet3.Environment;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -48,18 +47,8 @@ public class HttpExporterServer extends Servlet3JettyInbound implements Exporter
 			return;
 		}
 
-		setJmx_domain(String.format("ctu-service-exproter-%s", System.currentTimeMillis()));
+		setJmxDomain(String.format("jetty-%s", System.currentTimeMillis()));
 		super.start();
 	}
 
-	protected String contextRoot = null;
-
-	public void setContextRoot(String contextRoot) {
-		this.contextRoot = contextRoot;
-	}
-
-	@Override
-	protected String getContextRoot() {
-		return StringUtils.isBlank(contextRoot) ? super.getContextRoot() : contextRoot;
-	}
 }

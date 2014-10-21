@@ -6,13 +6,14 @@
 
     <bean id="framework.httpServer" class="com.sirius.utils.http.HttpExporterServer"
           lazy-init="false">
-        <property name="use_session" value="${server.http.session.enable}"/>
-        <property name="host" value="${server.http.host}"/>
-        <property name="port" value="${server.http.port}"/>
-        <property name="webRoot" value="${server.http.root}"/>
         <property name="minThreads" value="${server.http.thread.min}"/>
         <property name="maxThreads" value="${server.http.thread.max}"/>
-        <property name="contextRoot" value="${server.http.context.root}"/>
+        <property name="host" value="${server.http.host}"/>
+        <property name="port" value="${server.http.port}"/>
+        <property name="useSession" value="${server.http.session.enable}"/>
+        <property name="defaultWebAppDir" value="${server.http.webapp.default.dir}"/>
+        <property name="defaultWebAppContextPath" value="${server.http.webapp.default.contextPath}"/>
+        <property name="webAppScanPackage" value="${server.http.webapp.scan.package}" />
     </bean>
 
     <bean id="framework.freeMarkerConfigurer"
@@ -22,7 +23,7 @@
             <array>
                 <!-- 绝对文件路径,主要用于开发环境 -->
                 <bean class="freemarker.cache.FileTemplateLoader">
-                    <constructor-arg index="0" name="baseDir" value="${server.http.context.root}"/>
+                    <constructor-arg index="0" name="baseDir" value="${server.http.webapp.default.dir}"/>
                     <constructor-arg index="1" name="allowLinking" value="true"/>
                 </bean>
                 <!-- 通过spring的resourceLoader来在classpath下查找模板 -->

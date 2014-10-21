@@ -13,7 +13,6 @@
 		<appender-ref ref="stdout" />
 	</root>
 
-	<logger name="com.myctu" level="debug" />
-	<logger name="com.telecom" level="debug" />
+	<logger name="com.sirius" level="debug" />
     <logger name="org.springframework.transaction" level="debug"/>
 </configuration>
