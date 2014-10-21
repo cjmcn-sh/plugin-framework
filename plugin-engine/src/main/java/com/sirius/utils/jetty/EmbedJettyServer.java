@@ -113,11 +113,6 @@ public abstract class EmbedJettyServer {
 	protected HandlerList createWebAppHandler() {
 		final HandlerList handlers = new HandlerList();
 
-		defaultWebAppContext = createDefaultWebAppContext();
-		if (defaultWebAppContext != null) {
-			handlers.addHandler(defaultWebAppContext);
-		}
-
 		ClassScanner scanner = new ClassScanner();
 		scanner.addIncludeFilter(new AnnotationTypeFilter(WebAppRegistry.class));
 		scanner.scan(webAppScanPackage, "**/package-info.class", new Handler() {
@@ -140,6 +135,11 @@ public abstract class EmbedJettyServer {
 				}
 			}
 		});
+
+		defaultWebAppContext = createDefaultWebAppContext();
+		if (defaultWebAppContext != null) {
+			handlers.addHandler(defaultWebAppContext);
+		}
 
 		return handlers;
 	}
