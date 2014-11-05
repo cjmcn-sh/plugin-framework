@@ -17,7 +17,7 @@
 
     <properties>
         <engine.version>1.2-GA</engine.version>
-        <jpa-support.version>1.0-RELEASE</jpa-support.version>
+        <jpa-support.version>1.1-GA</jpa-support.version>
     </properties>
 
     <dependencies>

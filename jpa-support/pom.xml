@@ -13,10 +13,10 @@
     <groupId>com.sirius.plugin-framework</groupId>
     <artifactId>jpa-support</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-RELEASE</version>
+    <version>1.1-GA</version>
 
     <properties>
-        <engine.version>1.0-RELEASE</engine.version>
+        <engine.version>1.2-GA</engine.version>
     </properties>
 
     <dependencyManagement>
