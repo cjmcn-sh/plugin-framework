@@ -13,7 +13,7 @@
         </property>
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties" value="classpath*:hibernate.properties"/>
-        <property name="mappingLocations" value="classpath*:META-INF/hibernate/empty.hbm.xml"/>
+        <property name="mappingLocations" value="classpath*:META-INF/hibernate/**"/>
         <property name="packagesToScan" value="${orm.framework.packagesToScan}"/>
     </bean>
 
