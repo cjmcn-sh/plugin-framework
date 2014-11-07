@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public final class ThreadContext {
 
-	private static ThreadLocal<Map<String, Object>> context = new InheritableThreadLocal<Map<String, Object>>() {
+	private static ThreadLocal<Map<String, Object>> context = new ThreadLocal<Map<String, Object>>() {
 
 		@Override
 		protected Map<String, Object> initialValue() {
