@@ -7,13 +7,13 @@
     <parent>
         <groupId>com.sirius</groupId>
         <artifactId>plugin-framework</artifactId>
-        <version>1.1-GA</version>
+        <version>1.2-GA</version>
     </parent>
 
     <groupId>com.sirius.plugin-framework</groupId>
     <artifactId>mongo-support</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-RELEASE</version>
+    <version>20141218</version>
 
     <properties>
         <jongo.version>0.4</jongo.version>
@@ -97,10 +97,13 @@
                 <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
-
         <repository>
             <id>myctu.repository.release</id>
             <url>http://218.1.73.6/nexus/content/repositories/release</url>
+        </repository>
+        <repository>
+            <id>ibiblio</id>
+            <url>http://mirrors.ibiblio.org/maven2</url>
         </repository>
     </repositories>
 </project>
