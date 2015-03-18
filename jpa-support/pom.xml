@@ -7,16 +7,16 @@
     <parent>
         <groupId>com.sirius</groupId>
         <artifactId>plugin-framework</artifactId>
-        <version>1.2-GA</version>
+        <version>1.3-GA</version>
     </parent>
 
     <groupId>com.sirius.plugin-framework</groupId>
     <artifactId>jpa-support</artifactId>
     <packaging>jar</packaging>
-    <version>20141218</version>
+    <version>20150318</version>
 
     <properties>
-        <engine.version>1.3-GA</engine.version>
+        <engine.version>20150318</engine.version>
     </properties>
 
     <dependencyManagement>
