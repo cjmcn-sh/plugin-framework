@@ -13,7 +13,7 @@
     <groupId>com.sirius.plugin-framework</groupId>
     <artifactId>jpa-support</artifactId>
     <packaging>jar</packaging>
-    <version>20150318</version>
+    <version>2015-03-18</version>
 
     <properties>
         <engine.version>20150318</engine.version>

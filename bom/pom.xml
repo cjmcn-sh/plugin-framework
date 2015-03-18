@@ -13,7 +13,7 @@
     <groupId>com.sirius.plugin-framework</groupId>
     <artifactId>bom</artifactId>
     <packaging>pom</packaging>
-    <version>20150318</version>
+    <version>2015-03-18</version>
 
     <properties>
         <engine.version>20150318</engine.version>
