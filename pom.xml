@@ -36,7 +36,7 @@
         <commons.beanutils.version>1.8.3</commons.beanutils.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.collections.version>3.2.1</commons.collections.version>
-          v
+        <google.guava.version>18.0</google.guava.version>
         <joda-time.version>2.3</joda-time.version>
         <!-- http client -->
         <httpcomponents.version>4.4</httpcomponents.version>
