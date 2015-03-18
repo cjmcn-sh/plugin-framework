@@ -36,7 +36,7 @@
         <commons.beanutils.version>1.8.3</commons.beanutils.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.collections.version>3.2.1</commons.collections.version>
-        <google.guava.version>15.0</google.guava.version>
+          v
         <joda-time.version>2.3</joda-time.version>
         <!-- http client -->
         <httpcomponents.version>4.4</httpcomponents.version>
@@ -47,8 +47,8 @@
         <aspectj.version>1.8.2</aspectj.version>
         <cglib-nodep.version>2.2.2</cglib-nodep.version>
         <spring.version>4.1.4.RELEASE</spring.version>
-        <spring.data.jpa.verson>1.7.1.RELEASE</spring.data.jpa.verson>
-        <spring.data.mongo.version>1.6.1.RELEASE</spring.data.mongo.version>
+        <spring.data.jpa.verson>1.7.2.RELEASE</spring.data.jpa.verson>
+        <spring.data.mongo.version>1.6.2.RELEASE</spring.data.mongo.version>
         <!-- web server -->
         <jetty.version>9.2.1.v20140609</jetty.version>
         <!-- templete engine -->
