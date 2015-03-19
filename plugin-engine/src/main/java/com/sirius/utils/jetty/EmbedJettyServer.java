@@ -154,7 +154,7 @@ public abstract class EmbedJettyServer {
 		return defaultWebAppContext;
 	}
 
-	protected Map<String, File> existContextPath = new HashMap<String, File>();
+	protected Map<String, WebAppContext> existContextPath = new HashMap<String, WebAppContext>();
 
 	protected WebAppContext createWebAppContext(String dir, String contextPath, String[] welcomeFiles) {
 		File webApp = null;
@@ -180,7 +180,7 @@ public abstract class EmbedJettyServer {
 					webApp,
 					webApp);
 
-			return null;
+			return existContextPath.get(contextPath);
 		}
 
 		WebAppContext context = new WebAppContext(webApp.getAbsolutePath(), contextPath);
@@ -191,7 +191,7 @@ public abstract class EmbedJettyServer {
 			context.setSessionHandler(new SessionHandler(new EmptySessionManager()));
 		}
 
-		existContextPath.put(contextPath, webApp);
+		existContextPath.put(contextPath, context);
 		logger.info("create webapp:[{}] with contextPath:[{}]", webApp, contextPath);
 		return context;
 	}
