@@ -74,15 +74,4 @@
         <!--<property name="prefix" value="player/course/pages/"/>-->
     </bean>
 
-    <bean class="org.springframework.web.servlet.resource.CustomResourceHttpRequestHandler">
-        <property name="resourceResolvers">
-            <list>
-                <bean class="org.springframework.web.servlet.resource.PathResourceResolver">
-
-                </bean>
-
-            </list>
-        </property>
-    </bean>
-
 </beans>
