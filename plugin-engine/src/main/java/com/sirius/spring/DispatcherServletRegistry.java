@@ -16,43 +16,46 @@ import javax.servlet.ServletRegistration;
  */
 public class DispatcherServletRegistry {
 
-    private static final Logger logger = LoggerFactory.getLogger(DispatcherServletRegistry.class);
+	private static final Logger logger = LoggerFactory.getLogger(DispatcherServletRegistry.class);
 
-    public static ServletRegistration regist(String name, String mapping, WebApplicationContext context) {
-        //Validate.isTrue(!isMappingExists(mapping), "invalid mapping:[%s]", mapping);
-        String servletName = "dispatcher_" + name;
+	public static ServletRegistration regist(String name, String mapping, WebApplicationContext context) {
+		//Validate.isTrue(!isMappingExists(mapping), "invalid mapping:[%s]", mapping);
+		String servletName = "dispatcher_" + name;
 
-        ServletRegistration registration = context.getServletContext().getServletRegistration(servletName);
-        if (registration == null) {
-            DispatcherServlet dispatcher = new DispatcherServlet(context);
-            registration = context.getServletContext().addServlet(servletName, dispatcher);
-            registration.addMapping(mapping);
-            logger.info("regist new spring mvc dispatcher:[{}] for mapping:[{}]", dispatcher, mapping);
-        } else {
-            logger.warn("the dispatcher with name:[{}] exists, ignore regist!");
-        }
+		ServletRegistration registration = context.getServletContext().getServletRegistration(servletName);
+		if (registration == null) {
+			DispatcherServlet dispatcher = new DispatcherServlet(context);
+			ServletRegistration.Dynamic _registration = context.getServletContext().addServlet(servletName, dispatcher);
+			_registration.addMapping(mapping);
+			_registration.setAsyncSupported(true);
 
-        return registration;
-    }
+			registration = _registration;
+			logger.info("regist new spring mvc dispatcher:[{}] for mapping:[{}]", dispatcher, mapping);
+		} else {
+			logger.warn("the dispatcher with name:[{}] exists, ignore regist!");
+		}
 
-    //private static final Set<String> mappings = new HashSet<String>();
+		return registration;
+	}
 
-    //private static final AntPathMatcher pathMatcher = new AntPathMatcher();
+	//private static final Set<String> mappings = new HashSet<String>();
 
-    //    public static boolean isMappingExists(String mapping) {
-    //        for (String _mapping : mappings) {
-    //            if (pathMatcher.matchStart(mapping, _mapping)) {
-    //                logger.warn("the regist mapping:[{}] covered by:[{}]", mapping, _mapping);
-    //                return true;
-    //            }
-    //
-    //            if (pathMatcher.matchStart(_mapping, mapping)) {
-    //                logger.warn("the exists mapping:[{}] conflict with:[{}]", _mapping, mapping);
-    //                return true;
-    //            }
-    //        }
-    //
-    //        return false;
-    //    }
+	//private static final AntPathMatcher pathMatcher = new AntPathMatcher();
+
+	//    public static boolean isMappingExists(String mapping) {
+	//        for (String _mapping : mappings) {
+	//            if (pathMatcher.matchStart(mapping, _mapping)) {
+	//                logger.warn("the regist mapping:[{}] covered by:[{}]", mapping, _mapping);
+	//                return true;
+	//            }
+	//
+	//            if (pathMatcher.matchStart(_mapping, mapping)) {
+	//                logger.warn("the exists mapping:[{}] conflict with:[{}]", _mapping, mapping);
+	//                return true;
+	//            }
+	//        }
+	//
+	//        return false;
+	//    }
 
 }

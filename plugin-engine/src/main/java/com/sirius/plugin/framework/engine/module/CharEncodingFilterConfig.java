@@ -31,10 +31,11 @@ public class CharEncodingFilterConfig {
 			encodingFilter.setInitParameter("encoding",
 					StringUtils.isBlank(enableEncodingCharset) ? CharEncoding.UTF_8 : enableEncodingCharset);
 			encodingFilter.setInitParameter("forceEncoding", "true");
+			encodingFilter.setAsyncSupported(true);
 		}
 	}
 
-	protected FilterRegistration encodingFilter;
+	protected FilterRegistration.Dynamic encodingFilter;
 
 	public void addMapping(ServletRegistration servletRegistration) {
 		for (String pattern : servletRegistration.getMappings()) {
