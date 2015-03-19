@@ -21,24 +21,23 @@
     <mvc:annotation-driven>
         <!-- 会在默认的converters链最前面添加 -->
         <mvc:message-converters register-defaults="true">
-            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true"/>
                 <property name="objectMapper">
-                    <bean id="objectMapper"
-                          class="org.springframework.http.converter.json.JacksonObjectMapperFactoryBean">
+                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
                         <property name="simpleDateFormat" value="yyyy-MM-dd HH:mm:ss"/>
                         <property name="featuresToDisable">
                             <array>
                                 <!-- 反序列化 -->
                                 <util:constant
-                                        static-field="org.codehaus.jackson.map.DeserializationConfig$Feature.FAIL_ON_UNKNOWN_PROPERTIES"/>
+                                        static-field="com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES"/>
                                 <!-- 序列化 -->
                                 <util:constant
-                                        static-field="org.codehaus.jackson.map.SerializationConfig$Feature.FAIL_ON_EMPTY_BEANS"/>
+                                        static-field="com.fasterxml.jackson.databind.SerializationFeature.FAIL_ON_EMPTY_BEANS"/>
                                 <util:constant
-                                        static-field="org.codehaus.jackson.map.SerializationConfig$Feature.WRITE_NULL_MAP_VALUES"/>
+                                        static-field="com.fasterxml.jackson.databind.SerializationFeature.WRITE_NULL_MAP_VALUES"/>
                                 <util:constant
-                                        static-field="org.codehaus.jackson.map.SerializationConfig$Feature.WRITE_EMPTY_JSON_ARRAYS"/>
+                                        static-field="com.fasterxml.jackson.databind.SerializationFeature.WRITE_EMPTY_JSON_ARRAYS"/>
                             </array>
                         </property>
                     </bean>

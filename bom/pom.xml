@@ -13,11 +13,11 @@
     <groupId>com.sirius.plugin-framework</groupId>
     <artifactId>bom</artifactId>
     <packaging>pom</packaging>
-    <version>2015-03-18</version>
+    <version>2015-03-19</version>
 
     <properties>
-        <engine.version>20150318</engine.version>
-        <jpa-support.version>20150318</jpa-support.version>
+        <engine.version>2015-03-19</engine.version>
+        <jpa-support.version>2015-03-19</jpa-support.version>
     </properties>
 
     <dependencies>
