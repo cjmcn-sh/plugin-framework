@@ -16,7 +16,7 @@
     <version>2015-03-19</version>
 
     <properties>
-        <engine.version>20150319</engine.version>
+        <engine.version>2015-03-19</engine.version>
     </properties>
 
     <dependencyManagement>
